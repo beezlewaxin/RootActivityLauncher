@@ -45,11 +45,9 @@ public class MyPackageInfo implements Comparable<MyPackageInfo> {
 			this.activities = new MyActivityInfo[n_activities];
 			
 			for(ActivityInfo activity : info.activities) {
-				if(activity.isEnabled() && activity.exported) {
-					assert(activity.packageName.equals(info.packageName));
-					ComponentName acomp = new ComponentName(activity.packageName, activity.name);
-					this.activities[i++] = cache.getActivityInfo(acomp);
-				}
+				assert(activity.packageName.equals(info.packageName));
+				ComponentName acomp = new ComponentName(activity.packageName, activity.name);
+				this.activities[i++] = cache.getActivityInfo(acomp);
 			}
 			
 			Arrays.sort(this.activities);
@@ -59,9 +57,7 @@ public class MyPackageInfo implements Comparable<MyPackageInfo> {
 	private static int countActivitiesFromInfo(PackageInfo info) {
 		int n_activities = 0;
 		for(ActivityInfo activity : info.activities) {
-			if(activity.isEnabled() && activity.exported) {
-				n_activities++;
-			}
+			n_activities++;
 		}
 		return n_activities;
 	}
